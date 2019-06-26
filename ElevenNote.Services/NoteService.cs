@@ -62,5 +62,28 @@ namespace ElevenNote.Services
                 };
             }
         }
+
+        public bool UpdateNote(NoteEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Notes.Single(e => e.NoteID == model.NoteID && e.OwnerID == _userId);
+                entity.Title = model.Title;
+                entity.Content = model.Content;
+                entity.ModifiedUtc = DateTimeOffset.UtcNow;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+        public bool DeleteNote(int noteId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Notes.Single(e => e.NoteID == noteId && e.OwnerID == _userId);
+
+                ctx.Notes.Remove(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }
