@@ -12,6 +12,8 @@ namespace ElevenNote.Models
         public int NoteID { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
+        [Display(Name = "Important")]
+        public bool IsStarred { get; set; }
         [Display(Name = "Created")]
         public DateTimeOffset CreatedUtc { get; set; }
         [Display(Name = "Modified")]

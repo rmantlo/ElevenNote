@@ -11,7 +11,7 @@ namespace ElevenNote.Models
     {
         public int NoteID { get; set; }
         public string Title { get; set; }
-        [UIHint("Starred")]
+        [UIHint("Starred")] //this is what connects Starred.cshtml to IsStarred value
         [Display(Name ="Important")]
         public bool IsStarred { get; set; }
 
